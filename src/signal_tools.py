@@ -1,21 +1,15 @@
-# -*- coding: utf-8 -*-
-"""
-Basit sinyal işleme fonksiyonları
-"""
+import numpy as np
 
 def moving_average(x, window_size):
     """
     Hareketli ortalama filtresi
-
-    Parametreler:
-        x           : sinyal vektörü
-        window_size : pencere uzunluğu (int)
-
-    Dönen:
-        y : filtrelenmiş sinyal
     """
-    # TODO:
-    # 1. her örnek için pencereyi belirle
-    # 2. pencere içindeki ortalamayı hesapla
-    # 3. sonucu yeni bir listeye yaz
-    pass
+    x = np.asarray(x)
+    y = []
+
+    for i in range(len(x)):
+        start = max(0, i - window_size + 1)
+        window = x[start:i + 1]
+        y.append(np.mean(window))
+
+    return np.array(y)
